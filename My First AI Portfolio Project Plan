@@ -1,0 +1,53 @@
+My First AI Portfolio Project Plan
+
+###     Goal
+I will build a lightweight, stateless AI Code Review Assistant as my first AI-integrated portfolio project using Next.js, Tailwind CSS, and the Gemini API. Instead of a generic chat box, my app will analyze code through three selectable reviewer personas (Strict Senior Dev, Friendly Tutor, and Algorithm Optimizer) and render a structured diagnostic dashboard showing Big-O complexity, breaking edge cases, categorized bug cards, and clean refactored code.
+
+First Step
+Use Gemini to help me draft a 3-step workflow:
+1. Input: What data or trigger will start this?
+2. Process: What AI tool or function will handle it?
+3. Output: What should the result look like?
+
+###     My Action Plan
+
+Set Up My Project and Free API Key: I will initialize a Next.js (App Router) repository, install the Google Gen AI SDK, generate a free-tier API key from Google AI Studio, and store it in .env.local so my key stays hidden from the browser and GitHub.
+
+Lock In My JSON Schema and Persona Prompts: I will define a strict JSON output structure and test my system prompts in Google AI Studio to ensure the AI consistently returns a 1–10 quality score, time/space complexity, edge cases, and refactored code in each persona's distinct voice.
+
+Build the Backend API Proxy (/api/review): I will create a single server-side endpoint that validates incoming code snippets, attaches my secret API key, calls the Gemini API with enforced JSON schema output, and handles rate-limit or empty-input errors gracefully.
+
+Build the Split-Screen Frontend UI: I will design a two-pane interface with a code editor, language selector, and persona toggle pills on the left, and an interactive dashboard on the right that displays severity badges, an edge-case breakdown table, and syntax-highlighted refactored code.
+
+Polish for Visitors and Deploy Live: I will add a loading spinner, a 1-click "Copy Code" button, and 3 preset "Sample Buggy Code" buttons so recruiters can test the demo with one click, then deploy the app to Vercel and document the architecture in my GitHub README.
+
+###      Skills I’ll Learn
+
+AI API & Structured Output Engineering: I will learn how to integrate the @google/genai SDK, craft distinct persona system prompts, and enforce strict JSON schemas so the model behaves like a predictable backend service instead of an unstructured chatbot.
+
+Secure Full-Stack API Proxying: I will learn how to build server-side Next.js App Router route handlers (app/api/.../route.js), keep secret credentials protected in .env.local, and handle input validation and API rate limits cleanly.  
+
+Data-Driven Frontend UI Design: I will learn how to parse structured JSON responses in React and render interactive visual components—including score badges, Big-O pills, edge-case tables, loading states, and syntax-highlighted code blocks—styled with Tailwind CSS.
+
+Version Control & Cloud Deployment: I will learn how to manage a clean Git repository with proper .gitignore rules, configure production environment variables in Vercel, and deploy a live full-stack app.
+
+###      Basic Project Structure
+
+codelens-ai/
+├── app/
+│   ├── api/
+│   │   └── review/
+│   │       └── route.js        # Backend endpoint calling the Gemini SDK
+│   ├── components/
+│   │   ├── CodeInput.jsx       # Left pane: editor, language dropdown, persona pills
+│   │   └── ReviewDashboard.jsx # Right pane: score, Big-O badges, issues, refactored code
+│   ├── globals.css             # Tailwind CSS styles
+│   ├── layout.js               # Root layout and page metadata
+│   └── page.js                 # Main split-screen UI state and layout
+├── lib/
+│   ├── presets.js              # 3 sample buggy code snippets for 1-click testing
+│   └── prompts.js              # Persona instructions and enforced JSON schema
+├── .env.local                  # Secret GEMINI_API_KEY (excluded from Git)
+├── .gitignore                  # Prevents .env* and node_modules from being committed
+├── next.config.mjs             # Next.js configuration
+└── package.json                # Project dependencies (@google/genai, Tailwind, etc.)
